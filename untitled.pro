@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += serialport
 
 DEFINES += QT_DLL QWT_DLL
 LIBS += -L"D:\ProgramFiles\Qt\Qt5.8.0\5.8\msvc2015_64\lib" -lqwtd
@@ -29,9 +30,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    port.cpp \
+    qwtplot.cpp \
+    confio.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    port.h \
+    qwtplot.h \
+    confio.h
 
 FORMS    += mainwindow.ui
 

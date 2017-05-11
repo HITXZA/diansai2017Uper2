@@ -1,10 +1,11 @@
-#ifndef CONFIO_H
+﻿#ifndef CONFIO_H
 #define CONFIO_H
 
 #include <QObject>
 #include <QWidget>
+#include <QSettings>
 
-class confio
+class confio:public QSettings
 {
 public:
     confio();

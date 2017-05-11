@@ -1,8 +1,10 @@
-#ifndef PORT_H
+﻿#ifndef PORT_H
 #define PORT_H
 
 #include <QObject>
 #include <QWidget>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 class port : public QSerialPort
 {
