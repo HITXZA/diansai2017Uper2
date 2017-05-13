@@ -4,6 +4,7 @@
 #include "ui_serialport_ui.h"
 #include "port.h"
 #include <QMessageBox>
+#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,8 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->Plot->QwtInit(ui->qwtPlot);
 
+    QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
-    QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
+
 }
 
 MainWindow::~MainWindow()
@@ -23,18 +25,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::PortConfigSlot()
 {
-    //TODO 连接串口槽
+    //QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
     serialport_ui config;
     config.exec();
     if(Port.isOpen())
     {
         ui->PowerButton->setText("关闭串口");
-        //TODO 连接串口槽
+        //Object::connect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
     }
     else
     {
         ui->PowerButton->setText("打开串口");
-        //TODO 连接串口槽
+        //QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
     }
 
 }

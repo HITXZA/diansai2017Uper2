@@ -19,6 +19,7 @@ public:
 private slots:
     void PortConfigSlot();
     void OpenPortSlot();
+
 private:
     Ui::MainWindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;

@@ -16,22 +16,26 @@
 #include <qwt_legend.h>
 #include <qmath.h>
 #include <QPointF>
+#include <QWidget>
 
-class MyQwtPlot : public QwtPlotGrid , QwtPlotCurve
+class MyQwtPlot : public QwtPlotGrid , QwtPlotCurve,QObject,QMetaObject,QWidget
 {
+
+    Q_OBJECT
 public:
     MyQwtPlot();
     void QwtInit(QwtPlot *Plot);
     QwtPlotGrid *Grid=new QwtPlotGrid;              //网格图
     QwtPlotCurve *Curve=new QwtPlotCurve;           //笔刷
-public slots:
-    void QwtReceiveSlot(QwtPlot *Plot);
-    void CleanSlot(QwtPlot *Plot);
 
+public slots:
+    void CleanSlot();
+    void QwtReceiveSlot();
 private:
     QVector<double> yData;
     QVector<double> xData;
     int Timei;
+    QwtPlot *MyPlot;
 
     /*
     QTimer *QwtTimer=new QTimer(this);              //设置定时器*/

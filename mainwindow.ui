@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>400</height>
+    <height>403</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -19,7 +19,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_4">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="sizePolicy">
@@ -90,11 +90,33 @@ QPushButton:pressed {
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
+            <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QPushButton" name="AngleAddButton">
+              <widget class="QSlider" name="AngleSlider">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="AngleBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -102,57 +124,7 @@ QPushButton:pressed {
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="text">
-                <string>角度增加</string>
-               </property>
-               <property name="checkable">
-                <bool>false</bool>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-               <property name="default">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="AngleDownButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑 Light</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>角度减小</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout">
-               <item>
-                <widget class="QSpinBox" name="AngleBox">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>微软雅黑 Light</family>
-                   <pointsize>14</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QSpinBox{
+                <string notr="true">QSpinBox{
  height:36px;
  width:30px;
 border-style: none;
@@ -170,77 +142,15 @@ image:url(:/pix/pix/down.png);
 width:30px;
 }
 </string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="GotoAngleSlot">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>微软雅黑 Light</family>
-                   <pointsize>14</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>转到角度</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QSlider" name="AngleSlider">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">
-QSlider{
-border-color: #bcbcbc;
-}
-QSlider::groove:horizontal {                                                             
-     height: 5px;                                           
-    margin: 0px 0;                                         
-     left: 5px; right: 5px; 
- }
-QSlider::handle:horizontal {                               
-   border: 0px ;                           
-     border-image:  url(:/NiceTalk/Images/Setting/volume_nor.png);
-     width: 15px;                                           
-     margin: -7px -7px -7px -7px;              
-} 
-
-QSlider::add-page:horizontal{
-background: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 #bcbcbc, stop:0.25 #bcbcbc, stop:0.5 #bcbcbc, stop:1 #bcbcbc); 
-
-}
-QSlider::sub-page:horizontal{                               
-			border-image:url(:/pix/pix/up.png);
-}</string>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
                </property>
               </widget>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QPushButton" name="PortConfigButton">
+              <widget class="QPushButton" name="pushButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -248,7 +158,7 @@ QSlider::sub-page:horizontal{
                 </font>
                </property>
                <property name="text">
-                <string>串口配置</string>
+                <string>参数调试</string>
                </property>
               </widget>
              </item>
@@ -262,6 +172,19 @@ QSlider::sub-page:horizontal{
                </property>
                <property name="text">
                 <string>打开串口</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="PortConfigButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑 Light</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>串口配置</string>
                </property>
               </widget>
              </item>

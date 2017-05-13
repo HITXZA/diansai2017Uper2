@@ -20,6 +20,9 @@ serialport_ui::serialport_ui(QWidget *parent) :
         ui->COMBox->addItem(info.portName());
     }
 
+
+    this->PortToRight();
+    this->PortChackSlot();
     QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(PortOpenSlot()));
     QObject::connect(ui->SaveButton,SIGNAL(clicked(bool)),this,SLOT(PortSaveSlot()));
     QObject::connect(ui->SendButton,SIGNAL(clicked(bool)),this,SLOT(SendSlot()));
@@ -28,7 +31,10 @@ serialport_ui::serialport_ui(QWidget *parent) :
 
 serialport_ui::~serialport_ui()
 {
-    QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
+    if(Port.isOpen())
+    {
+        QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
+    }
     delete ui;
 }
 
@@ -64,6 +70,7 @@ void serialport_ui::PortSaveSlot()
     Port.settings.portname=ui->COMBox->currentText();
     Port.settings.stopbit=ui->StopBox->currentIndex();
     QMessageBox::information(this,"保存成功","串口信息更新成功",QMessageBox::Yes);
+    this->PortChackSlot();
 }
 
 void serialport_ui::PortOpenSlot()
@@ -137,6 +144,13 @@ void serialport_ui::SendSlot()
     {
         ui->SendAera->clear();
     }
+}
 
-
+void serialport_ui::PortToRight()
+{
+    ui->COMBox->setCurrentText(Port.settings.portname);
+    ui->SpeedBox->setCurrentIndex(Port.settings.baud);
+    ui->StopBox->setCurrentIndex(Port.settings.stopbit);
+    ui->DataBox->setCurrentIndex(Port.settings.Data);
+    ui->ChackBox->setCurrentIndex(Port.settings.parity);
 }

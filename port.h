@@ -9,6 +9,8 @@
 
 class port : public QSerialPort
 {
+
+    Q_OBJECT
 public:
     port();
     void PortScan();

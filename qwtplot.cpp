@@ -8,6 +8,7 @@ MyQwtPlot::MyQwtPlot()
 
 void MyQwtPlot::QwtInit(QwtPlot *Plot)
 {
+    this->MyPlot=Plot;
     Plot->enableAxis(QwtPlot::xTop,false);
     Plot->enableAxis(QwtPlot::xBottom,true);
     Plot->enableAxis(QwtPlot::yLeft,true);
@@ -36,7 +37,7 @@ void MyQwtPlot::QwtInit(QwtPlot *Plot)
 
 }
 
-void MyQwtPlot::QwtReceiveSlot(QwtPlot *Plot)
+void MyQwtPlot::QwtReceiveSlot()
 {
     int data[8*2+8+100];
 #define number 5
@@ -67,21 +68,21 @@ void MyQwtPlot::QwtReceiveSlot(QwtPlot *Plot)
            }
        }
 
-       Plot->replot();
+       MyPlot->replot();
 
        Timei++;
-       Plot->setAxisScale(QwtPlot::xBottom,Timei-25,25+Timei);
+       MyPlot->setAxisScale(QwtPlot::xBottom,Timei-25,25+Timei);
     }
 }
 
-void MyQwtPlot::CleanSlot(QwtPlot *Plot)
+void MyQwtPlot::CleanSlot()
 {
     this->xData.clear();
     this->yData.clear();
     this->Curve->setSamples(this->xData,this->yData);
 
-    Plot->setAxisScale(QwtPlot::yLeft,0,90);
-    Plot->setAxisScale(QwtPlot::xBottom,0,25);
+    MyPlot->setAxisScale(QwtPlot::yLeft,0,90);
+    MyPlot->setAxisScale(QwtPlot::xBottom,0,25);
 
-    Plot->replot();
+    MyPlot->replot();
 }
