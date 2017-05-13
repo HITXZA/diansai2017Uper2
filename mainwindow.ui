@@ -94,7 +94,7 @@ QPushButton:pressed {
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="AngleAddButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -119,7 +119,7 @@ QPushButton:pressed {
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="AngleDownButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -138,7 +138,7 @@ QPushButton:pressed {
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout">
                <item>
-                <widget class="QSpinBox" name="spinBox">
+                <widget class="QSpinBox" name="AngleBox">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -174,7 +174,7 @@ width:30px;
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="GotoAngleSlot">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -198,7 +198,7 @@ width:30px;
               </layout>
              </item>
              <item>
-              <widget class="QSlider" name="horizontalSlider">
+              <widget class="QSlider" name="AngleSlider">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -240,7 +240,7 @@ QSlider::sub-page:horizontal{
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="PortConfigButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -253,7 +253,7 @@ QSlider::sub-page:horizontal{
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="PowerButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>

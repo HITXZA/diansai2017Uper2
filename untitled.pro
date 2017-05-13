@@ -33,14 +33,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     port.cpp \
     qwtplot.cpp \
-    confio.cpp
+    confio.cpp \
+    debugwindow.cpp \
+    serialport_ui.cpp
 
 HEADERS  += mainwindow.h \
     port.h \
     qwtplot.h \
-    confio.h
+    confio.h \
+    debugwindow.h \
+    serialport_ui.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    debugwindow.ui \
+    serialport_ui.ui
 
 RESOURCES += \
     res.qrc

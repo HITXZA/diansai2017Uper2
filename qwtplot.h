@@ -17,10 +17,26 @@
 #include <qmath.h>
 #include <QPointF>
 
-class QwtPlot : public QwtPlotGrid , QwtPlotCurve
+class MyQwtPlot : public QwtPlotGrid , QwtPlotCurve
 {
 public:
-    QwtPlot();
+    MyQwtPlot();
+    void QwtInit(QwtPlot *Plot);
+    QwtPlotGrid *Grid=new QwtPlotGrid;              //网格图
+    QwtPlotCurve *Curve=new QwtPlotCurve;           //笔刷
+public slots:
+    void QwtReceiveSlot(QwtPlot *Plot);
+    void CleanSlot(QwtPlot *Plot);
+
+private:
+    QVector<double> yData;
+    QVector<double> xData;
+    int Timei;
+
+    /*
+    QTimer *QwtTimer=new QTimer(this);              //设置定时器*/
+
+
 };
 
 #endif // QWTPLOT_H
