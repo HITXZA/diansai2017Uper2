@@ -21,7 +21,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout_4">
+    <layout class="QVBoxLayout" name="verticalLayout_5">
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="sizePolicy">
@@ -41,7 +41,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="sizePolicy">
@@ -63,14 +63,14 @@
           <item row="0" column="0">
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="PortConfigButton">
               <property name="text">
                <string>串口配置</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="PowerButton">
               <property name="text">
                <string>打开串口</string>
               </property>
@@ -94,28 +94,57 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>角度:</string>
-                </property>
-               </widget>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="label">
+                    <property name="text">
+                     <string>角度:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="AngleSlider">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="AngleBox"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>电机距离:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="DistanceSlider">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="DistanceBox"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spinBox"/>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="ReflashButton">
                 <property name="maximumSize">
                  <size>
                   <width>50</width>
@@ -130,7 +159,7 @@
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
@@ -155,14 +184,14 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSlider" name="horizontalSlider_2">
+                   <widget class="QSlider" name="P">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+                   <widget class="QDoubleSpinBox" name="PBox"/>
                   </item>
                  </layout>
                 </item>
@@ -188,14 +217,14 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSlider" name="horizontalSlider_4">
+                   <widget class="QSlider" name="I">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+                   <widget class="QDoubleSpinBox" name="IBox"/>
                   </item>
                  </layout>
                 </item>
@@ -221,21 +250,21 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSlider" name="horizontalSlider_3">
+                   <widget class="QSlider" name="D">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
+                   <widget class="QDoubleSpinBox" name="DBox"/>
                   </item>
                  </layout>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="AdjustButton">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
                   <horstretch>10</horstretch>
@@ -271,6 +300,7 @@
    <class>QwtPlot</class>
    <extends>QFrame</extends>
    <header>qwt_plot.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

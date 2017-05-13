@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "serialport_ui.h"
 #include "ui_serialport_ui.h"
+#include "debugwindow.h"
+#include "ui_debugwindow.h"
 #include "port.h"
 #include <QMessageBox>
 #include <QtDebug>
@@ -13,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->Plot->QwtInit(ui->qwtPlot);
 
+    QObject::connect(ui->DeBugButton,SIGNAL(clicked(bool)),this,SLOT(DeBugInterfaceSlot()));
     QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
 
@@ -25,18 +28,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::PortConfigSlot()
 {
-    //QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
+    QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     serialport_ui config;
     config.exec();
     if(Port.isOpen())
     {
         ui->PowerButton->setText("关闭串口");
-        //Object::connect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
+        QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     }
     else
     {
         ui->PowerButton->setText("打开串口");
-        //QObject::disconnect(&Port,SIGNAL(readyRead()),this,SLOT(ReceiveSlot()));
+        QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     }
 
 }
@@ -49,7 +52,7 @@ void MainWindow::OpenPortSlot()
         if(ok)
         {
             ui->PowerButton->setText("关闭串口");
-            //连接槽
+            QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
         }
         else
         {
@@ -63,4 +66,22 @@ void MainWindow::OpenPortSlot()
         Port.close();
         ui->PowerButton->setText("打开串口");
     }
+}
+
+void MainWindow::DeBugInterfaceSlot()
+{
+    QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
+    debugwindow DeBug;
+    DeBug.exec();
+    if(Port.isOpen())
+    {
+        ui->PowerButton->setText("关闭串口");
+        QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
+    }
+    else
+    {
+        ui->PowerButton->setText("打开串口");
+        QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
+    }
+
 }

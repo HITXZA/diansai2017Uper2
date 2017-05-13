@@ -150,7 +150,7 @@ width:30px;
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="DeBugButton">
                <property name="font">
                 <font>
                  <family>微软雅黑 Light</family>
@@ -207,10 +207,9 @@ width:30px;
    <class>QwtPlot</class>
    <extends>QFrame</extends>
    <header>qwt_plot.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

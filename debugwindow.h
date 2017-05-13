@@ -2,6 +2,7 @@
 #define DEBUGWINDOW_H
 
 #include <QDialog>
+#include "qwtplot.h"
 
 namespace Ui {
 class debugwindow;
@@ -14,9 +15,13 @@ class debugwindow : public QDialog
 public:
     explicit debugwindow(QWidget *parent = 0);
     ~debugwindow();
+public slots:
+    void PortConfigSlot();
+    void OpenPortSlot();
 
 private:
     Ui::debugwindow *ui;
+    MyQwtPlot *Plot=new MyQwtPlot;
 };
 
 

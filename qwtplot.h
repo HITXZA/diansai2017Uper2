@@ -18,7 +18,7 @@
 #include <QPointF>
 #include <QWidget>
 
-class MyQwtPlot : public QwtPlotGrid , QwtPlotCurve,QObject,QMetaObject,QWidget
+class MyQwtPlot : public QObject, QwtPlotGrid , QwtPlotCurve
 {
 
     Q_OBJECT
@@ -36,10 +36,6 @@ private:
     QVector<double> xData;
     int Timei;
     QwtPlot *MyPlot;
-
-    /*
-    QTimer *QwtTimer=new QTimer(this);              //设置定时器*/
-
 
 };
 

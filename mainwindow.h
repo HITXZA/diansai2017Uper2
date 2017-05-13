@@ -17,6 +17,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void DeBugInterfaceSlot();
     void PortConfigSlot();
     void OpenPortSlot();
 
