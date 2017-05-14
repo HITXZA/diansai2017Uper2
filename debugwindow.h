@@ -18,10 +18,22 @@ public:
 public slots:
     void PortConfigSlot();
     void OpenPortSlot();
+    void PSlot();
+    void ISlot();
+    void DSlot();
+    void PBoxSlot();
+    void IBoxSlot();
+    void DBoxSlot();
+    void AngleSlot();
+    void AngleBoxSlot();
+    void distanceSlot();
+    void distanceBoxSlot();
+
 
 private:
     Ui::debugwindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;
+     void SendData();
 };
 
 

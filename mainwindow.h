@@ -20,6 +20,8 @@ private slots:
     void DeBugInterfaceSlot();
     void PortConfigSlot();
     void OpenPortSlot();
+    void AngleSlot();
+    void AngleBoxSlot();
 
 private:
     Ui::MainWindow *ui;

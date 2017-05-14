@@ -14,10 +14,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->Plot->QwtInit(ui->qwtPlot);
+    ui->AngleSlider->setMaximum(90);
+    ui->AngleSlider->setMinimum(0);
+    ui->AngleSlider->setValue(0);
 
     QObject::connect(ui->DeBugButton,SIGNAL(clicked(bool)),this,SLOT(DeBugInterfaceSlot()));
     QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
+    QObject::connect(ui->AngleSlider,SIGNAL(valueChanged(int)),this,SLOT(AngleSlot()));
+    QObject::connect(ui->AngleBox,SIGNAL(valueChanged(int)),this,SLOT(AngleBoxSlot()));
 
 }
 
@@ -84,4 +89,16 @@ void MainWindow::DeBugInterfaceSlot()
         QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     }
 
+}
+
+void MainWindow::AngleSlot()
+{
+    ui->AngleBox->setValue(ui->AngleSlider->value());
+    qDebug()<<"ok";
+    //TODO串口发送数据
+}
+
+void MainWindow::AngleBoxSlot()
+{
+    ui->AngleSlider->setValue(ui->AngleBox->value());
 }
