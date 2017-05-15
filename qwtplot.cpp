@@ -11,8 +11,8 @@ void MyQwtPlot::QwtInit(QwtPlot *Plot)
     this->MyPlot=Plot;
     Plot->enableAxis(QwtPlot::xTop,false);
     Plot->enableAxis(QwtPlot::xBottom,true);
-    Plot->enableAxis(QwtPlot::yLeft,true);
-    Plot->enableAxis(QwtPlot::yRight,false);
+    Plot->enableAxis(QwtPlot::yLeft,false);
+    Plot->enableAxis(QwtPlot::yRight,true);
     Plot->setAxisAutoScale(QwtPlot::yLeft,true);
     Plot->setAxisAutoScale(QwtPlot::xBottom,true);
 
@@ -32,15 +32,15 @@ void MyQwtPlot::QwtInit(QwtPlot *Plot)
     this->Grid->enableXMin(false);
     this->Grid->attach(Plot);
 
-    Plot->setAxisScale(QwtPlot::yLeft,0,90);
-    Plot->setAxisScale(QwtPlot::xBottom,0,25);
+    Plot->setAxisScale(QwtPlot::yRight,0,90);
+    Plot->setAxisScale(QwtPlot::xBottom,0,50);
 
 }
 
 void MyQwtPlot::QwtReceiveSlot()
 {
     int data[8*2+8+100];
-#define number 5
+#define number 1
     if(Port.bytesAvailable()>=number*2+8)
     {
         QByteArray buf;
@@ -64,14 +64,16 @@ void MyQwtPlot::QwtReceiveSlot()
                    this->yData.append(data[i+2+j]);
                }
                this->xData.append(Timei);
+               this->Curve->setSamples(this->xData,this->yData);
+               MyPlot->replot();
+               Timei++;
+               if(Timei>50)
+               {
+                    MyPlot->setAxisScale(QwtPlot::xBottom,Timei-50,Timei);
+               }
                break;
            }
-       }
-
-       MyPlot->replot();
-
-       Timei++;
-       MyPlot->setAxisScale(QwtPlot::xBottom,Timei-25,25+Timei);
+       }   
     }
 }
 
@@ -82,7 +84,7 @@ void MyQwtPlot::CleanSlot()
     this->Curve->setSamples(this->xData,this->yData);
 
     MyPlot->setAxisScale(QwtPlot::yLeft,0,90);
-    MyPlot->setAxisScale(QwtPlot::xBottom,0,25);
+    MyPlot->setAxisScale(QwtPlot::xBottom,0,50);
 
     MyPlot->replot();
 }

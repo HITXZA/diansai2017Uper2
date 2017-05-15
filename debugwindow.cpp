@@ -13,14 +13,15 @@ debugwindow::debugwindow(QWidget *parent) :
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
-    ui->DistanceSlider->setMaximum(10);
-    ui->DistanceSlider->setMinimum(0);
     ui->P->setMaximum(1000);
     ui->P->setMinimum(0);
     ui->I->setMaximum(1000);
     ui->I->setMinimum(0);
     ui->D->setMaximum(1000);
     ui->D->setMinimum(0);
+    ui->PBox->setSingleStep(0.01);
+    ui->IBox->setSingleStep(0.01);
+    ui->DBox->setSingleStep(0.01);
 
 
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
@@ -33,8 +34,8 @@ debugwindow::debugwindow(QWidget *parent) :
     QObject::connect(ui->DBox,SIGNAL(valueChanged(double)),this,SLOT(DBoxSlot()));
     QObject::connect(ui->AngleSlider,SIGNAL(valueChanged(int)),this,SLOT(AngleSlot()));
     QObject::connect(ui->AngleBox,SIGNAL(valueChanged(int)),this,SLOT(AngleBoxSlot()));
-    QObject::connect(ui->DistanceSlider,SIGNAL(valueChanged(int)),this,SLOT(distanceSlot()));
-    QObject::connect(ui->DistanceBox,SIGNAL(valueChanged(int)),this,SLOT(distanceBoxSlot()));
+    QObject::connect(ui->DistanceButtonAdd,SIGNAL(clicked(bool)),this,SLOT(DistanceaddSlot()));
+    QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(DistanceSlot()));
 }
 
 debugwindow::~debugwindow()
@@ -86,7 +87,7 @@ void debugwindow::OpenPortSlot()
 
 void debugwindow::PSlot()
 {
-    ui->PBox->setValue(ui->P->value()/100);
+    ui->PBox->setValue(ui->P->value()/100.0);
     this->SendData();
 }
 
@@ -97,7 +98,7 @@ void debugwindow::PBoxSlot()
 
 void debugwindow::ISlot()
 {
-    ui->IBox->setValue(ui->I->value()/100);
+    ui->IBox->setValue(ui->I->value()/100.0);
     this->SendData();
 }
 
@@ -108,7 +109,7 @@ void debugwindow::IBoxSlot()
 
 void debugwindow::DSlot()
 {
-    ui->DBox->setValue(ui->D->value()/100);
+    ui->DBox->setValue(ui->D->value()/100.0);
     this->SendData();
 }
 
@@ -128,15 +129,14 @@ void debugwindow::AngleBoxSlot()
     ui->AngleSlider->setValue(ui->AngleBox->value());
 }
 
-void debugwindow::distanceSlot()
+void debugwindow::DistanceaddSlot()
 {
-    ui->DistanceBox->setValue(ui->DistanceSlider->value());
-    this->SendData();
+    Port.DistanceAddSlot();
 }
 
-void debugwindow::distanceBoxSlot()
+void debugwindow::DistanceSlot()
 {
-    ui->DistanceSlider->setValue(ui->DistanceBox->value());
+    Port.distanceMinusSlot();
 }
 
 void debugwindow::SendData()

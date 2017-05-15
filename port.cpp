@@ -1,5 +1,6 @@
 ﻿#include "port.h"
 #include <QMessageBox>
+#include <QDebug>
 
 port::port()
 {
@@ -86,6 +87,55 @@ void port::PortScan()
 {
     this->PortInfo.clear();                                  //先清除列表
     this->PortInfo=QSerialPortInfo::availablePorts();        //读取串口信息
+}
+
+void port::SaveWrite(QByteArray &data)
+{
+    if(!Port.isOpen())
+    {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("请打开串口");
+        a.setText("串口可能未打开");
+        a.show();
+        a.exec();
+        return;
+    }
+    Port.write(data);
+}
+
+void port::DistanceAddSlot()
+{
+    QByteArray a;
+    a.resize(4);
+    a[0]=0x01;
+    a[1]=~0x01;
+    a[2]=~0x01;
+    a[3]=0x01;
+    Port.SaveWrite(a);
+}
+
+void port::distanceMinusSlot()
+{
+    QByteArray a;
+    a.resize(4);
+    a[0]=0x02;
+    a[1]=~0x02;
+    a[2]=~0x02;
+    a[3]=0x02;
+    Port.SaveWrite(a);
+}
+
+void port::AngleSlot(int angle)
+{
+    QByteArray a;
+    a.resize(5);
+    a[0]=0x03;
+    a[1]=~0x03;
+    a[2]=angle;
+    a[3]=~0x03;
+    a[4]=0x03;
+    Port.SaveWrite(a);
 }
 
 port Port;

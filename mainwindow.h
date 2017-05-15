@@ -22,10 +22,13 @@ private slots:
     void OpenPortSlot();
     void AngleSlot();
     void AngleBoxSlot();
+    void distanceAddSlot();
+    void distanceSlot();
 
 private:
     Ui::MainWindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;
+    void SendData();
 };
 
 #if _MSC_VER >= 1600

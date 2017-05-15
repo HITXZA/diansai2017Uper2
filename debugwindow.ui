@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="font">
@@ -98,69 +98,66 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_5">
-                  <item>
-                   <widget class="QLabel" name="label">
-                    <property name="text">
-                     <string>角度:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSlider" name="AngleSlider">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="AngleBox"/>
-                  </item>
-                 </layout>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>角度:</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout">
-                  <item>
-                   <widget class="QLabel" name="label_5">
-                    <property name="text">
-                     <string>电机距离:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSlider" name="DistanceSlider">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="DistanceBox"/>
-                  </item>
-                 </layout>
+                 <widget class="QSpinBox" name="AngleBox"/>
+                </item>
+                <item>
+                 <widget class="QSlider" name="AngleSlider">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="ReflashButton">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>转到</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>电机距离:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <item>
+                   <widget class="QPushButton" name="DistanceButtonAdd">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>增加</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="DistanceButton">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>减少</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -268,25 +265,6 @@
                  </layout>
                 </item>
                </layout>
-              </item>
-              <item>
-               <widget class="QPushButton" name="AdjustButton">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-                  <horstretch>10</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>调节</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>

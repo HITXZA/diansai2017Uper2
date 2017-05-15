@@ -26,8 +26,8 @@ public slots:
     void DBoxSlot();
     void AngleSlot();
     void AngleBoxSlot();
-    void distanceSlot();
-    void distanceBoxSlot();
+    void DistanceaddSlot();
+    void DistanceSlot();
 
 
 private:

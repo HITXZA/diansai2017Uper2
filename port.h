@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QByteArray>
 #include <QList>
 
 class port : public QSerialPort
@@ -25,10 +26,18 @@ public:
         char parity;
     }settings;
 
+public slots:
+    void DistanceAddSlot();
+    void distanceMinusSlot();
+    void AngleSlot(int angle);
 private:
-
+    void SaveWrite(QByteArray &data);
 
 };
 
 extern port Port;
+
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
 #endif // PORT_H

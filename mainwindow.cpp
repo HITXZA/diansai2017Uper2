@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
     QObject::connect(ui->AngleSlider,SIGNAL(valueChanged(int)),this,SLOT(AngleSlot()));
     QObject::connect(ui->AngleBox,SIGNAL(valueChanged(int)),this,SLOT(AngleBoxSlot()));
+    QObject::connect(ui->DistanceAddButton,SIGNAL(clicked(bool)),this,SLOT(distanceAddSlot()));
+    QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(distanceSlot()));
 
 }
 
@@ -94,11 +96,25 @@ void MainWindow::DeBugInterfaceSlot()
 void MainWindow::AngleSlot()
 {
     ui->AngleBox->setValue(ui->AngleSlider->value());
-    qDebug()<<"ok";
-    //TODO串口发送数据
+    Port.AngleSlot(ui->AngleSlider->value());
 }
 
 void MainWindow::AngleBoxSlot()
 {
     ui->AngleSlider->setValue(ui->AngleBox->value());
+}
+
+void MainWindow::distanceAddSlot()
+{
+    Port.DistanceAddSlot();
+}
+
+void MainWindow::distanceSlot()
+{
+    Port.distanceMinusSlot();
+}
+
+void MainWindow::SendData()
+{
+    //TODO发送到下位机，其实也可以在Port中实现
 }
