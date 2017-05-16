@@ -10,6 +10,16 @@ debugwindow::debugwindow(QWidget *parent) :
     ui(new Ui::debugwindow)
 {
     ui->setupUi(this);
+    if(Port.isOpen())
+    {
+        ui->PowerButton->setText("关闭串口");
+        QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
+    }
+    else
+    {
+        ui->PowerButton->setText("打开串口");
+    }
+
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
@@ -36,6 +46,7 @@ debugwindow::debugwindow(QWidget *parent) :
     QObject::connect(ui->AngleBox,SIGNAL(valueChanged(int)),this,SLOT(AngleBoxSlot()));
     QObject::connect(ui->DistanceButtonAdd,SIGNAL(clicked(bool)),this,SLOT(DistanceaddSlot()));
     QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(DistanceSlot()));
+    QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
 }
 
 debugwindow::~debugwindow()
@@ -121,7 +132,7 @@ void debugwindow::DBoxSlot()
 void debugwindow::AngleSlot()
 {
     ui->AngleBox->setValue(ui->AngleSlider->value());
-    this->SendData();
+    Port.AngleSlot(ui->AngleSlider->value());
 }
 
 void debugwindow::AngleBoxSlot()

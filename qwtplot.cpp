@@ -66,6 +66,7 @@ void MyQwtPlot::QwtReceiveSlot()
                this->xData.append(Timei);
                this->Curve->setSamples(this->xData,this->yData);
                MyPlot->replot();
+               qDebug()<<yData;//画图数据有bug
                Timei++;
                if(Timei>50)
                {
