@@ -17,6 +17,7 @@
 #include <qmath.h>
 #include <QPointF>
 #include <QWidget>
+#include <QTimer>
 
 class MyQwtPlot : public QObject, QwtPlotGrid , QwtPlotCurve
 {
@@ -35,6 +36,7 @@ private:
     QVector<double> yData;
     QVector<double> xData;
     int Timei;
+    QTimer Reflash;
     QwtPlot *MyPlot;
 
 };

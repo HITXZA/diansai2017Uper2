@@ -1,6 +1,6 @@
 ﻿#include "qwtplot.h"
 #include "port.h"
-
+#include <QTimer>
 MyQwtPlot::MyQwtPlot()
 {
     this->Timei=0;
@@ -66,7 +66,6 @@ void MyQwtPlot::QwtReceiveSlot()
                this->xData.append(Timei);
                this->Curve->setSamples(this->xData,this->yData);
                MyPlot->replot();
-               qDebug()<<yData;//画图数据有bug
                Timei++;
                if(Timei>50)
                {
@@ -82,6 +81,7 @@ void MyQwtPlot::CleanSlot()
 {
     this->xData.clear();
     this->yData.clear();
+    this->Timei=0;
     this->Curve->setSamples(this->xData,this->yData);
 
     MyPlot->setAxisScale(QwtPlot::yLeft,0,90);

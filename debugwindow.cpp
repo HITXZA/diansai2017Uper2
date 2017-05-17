@@ -47,6 +47,7 @@ debugwindow::debugwindow(QWidget *parent) :
     QObject::connect(ui->DistanceButtonAdd,SIGNAL(clicked(bool)),this,SLOT(DistanceaddSlot()));
     QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(DistanceSlot()));
     QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
+    QObject::connect(ui->cleanButton,SIGNAL(clicked(bool)),this->Plot,SLOT(CleanSlot()));
 }
 
 debugwindow::~debugwindow()
@@ -152,5 +153,5 @@ void debugwindow::DistanceSlot()
 
 void debugwindow::SendData()
 {
-
+    Port.PIDSlot(ui->PBox->value(),ui->IBox->value(),ui->DBox->value());
 }

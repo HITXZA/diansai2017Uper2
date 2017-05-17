@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
     ui->AngleSlider->setValue(0);
+    this->Reflash->start(10);
 
     QObject::connect(ui->DeBugButton,SIGNAL(clicked(bool)),this,SLOT(DeBugInterfaceSlot()));
     QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
@@ -25,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->AngleBox,SIGNAL(valueChanged(int)),this,SLOT(AngleBoxSlot()));
     QObject::connect(ui->DistanceAddButton,SIGNAL(clicked(bool)),this,SLOT(distanceAddSlot()));
     QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(distanceSlot()));
+    QObject::connect(this->Reflash,SIGNAL(timeout()),ui->qwtPlot,SLOT(replot()));
+    QObject::connect(ui->cleanButton,SIGNAL(clicked(bool)),this->Plot,SLOT(CleanSlot()));
 
 }
 

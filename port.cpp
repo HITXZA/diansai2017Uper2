@@ -104,6 +104,21 @@ void port::SaveWrite(QByteArray &data)
     Port.write(data);
 }
 
+void port::SaveWrite(char *data)
+{
+    if(!Port.isOpen())
+    {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("请打开串口");
+        a.setText("串口可能未打开");
+        a.show();
+        a.exec();
+        return;
+    }
+    Port.write(data);
+}
+
 void port::DistanceAddSlot()
 {
     QByteArray a;
@@ -135,6 +150,30 @@ void port::AngleSlot(int angle)
     a[2]=angle;
     a[3]=~0x03;
     a[4]=0x03;
+    Port.SaveWrite(a);
+}
+
+void port::PIDSlot(float P, float I, float D)
+{
+    union send
+    {
+        unsigned char a[12];
+        float PID[3];
+    }Send;
+    Send.PID[0]=P;
+    Send.PID[1]=I;
+    Send.PID[2]=D;
+    QByteArray a;
+    a.resize(16);
+    a[0]=0x05;
+    a[1]=~0x05;
+    for(int i=2;i<14;i++)
+    {
+        a[i]=Send.a[i-2];
+    }
+    a[14]=~0x05;
+    a[15]=0x05;
+    qDebug()<<a;
     Port.SaveWrite(a);
 }
 

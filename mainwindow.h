@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "qwtplot.h"
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private:
     Ui::MainWindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;
     void SendData();
+    QTimer *Reflash=new QTimer;
 };
 
 #if _MSC_VER >= 1600
