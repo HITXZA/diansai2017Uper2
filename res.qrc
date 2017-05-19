@@ -1,7 +1,9 @@
 <RCC>
-  <qresource prefix="/pix">
-    <file>pix/down.png</file>
-    <file>pix/up.png</file>
-    <file>pix/loading.png</file>
-  </qresource>
+    <qresource prefix="/pix">
+        <file>pix/down.png</file>
+        <file>pix/up.png</file>
+        <file>pix/loading.png</file>
+        <file>pix/chacked.png</file>
+        <file>pix/unckacked.png</file>
+    </qresource>
 </RCC>

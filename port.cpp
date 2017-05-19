@@ -101,6 +101,7 @@ void port::SaveWrite(QByteArray &data)
         a.exec();
         return;
     }
+    qDebug()<<data;
     Port.write(data);
 }
 
@@ -144,37 +145,43 @@ void port::distanceMinusSlot()
 void port::AngleSlot(int angle)
 {
     QByteArray a;
-    a.resize(5);
-    a[0]=0x03;
-    a[1]=~0x03;
-    a[2]=angle;
-    a[3]=~0x03;
-    a[4]=0x03;
+    a.resize(2);
+    a[0]=0x0b;
+    a[1]=angle;
     Port.SaveWrite(a);
 }
 
-void port::PIDSlot(float P, float I, float D)
+void port::PIDSlot(unsigned short int P, unsigned short int I, unsigned short int D)
 {
-    union send
+    union
     {
-        unsigned char a[12];
-        float PID[3];
+        unsigned char a[2];
+        unsigned short int b;
     }Send;
-    Send.PID[0]=P;
-    Send.PID[1]=I;
-    Send.PID[2]=D;
+
     QByteArray a;
-    a.resize(16);
-    a[0]=0x05;
-    a[1]=~0x05;
-    for(int i=2;i<14;i++)
-    {
-        a[i]=Send.a[i-2];
-    }
-    a[14]=~0x05;
-    a[15]=0x05;
-    qDebug()<<a;
+    a.resize(12);
+
+    a[0]=0x0c;
+    a[1]=0;
+    Send.b=P;
+    a[2]=Send.a[0];
+    a[3]=Send.a[1];
+
+    a[4]=0x0c;
+    a[5]=1;
+    Send.b=I;
+    a[6]=Send.a[0];
+    a[7]=Send.a[1];
+
+    a[8]=0x0c;
+    a[9]=2;
+    Send.b=D;
+    a[10]=Send.a[0];
+    a[11]=Send.a[1];
+
     Port.SaveWrite(a);
+
 }
 
 port Port;

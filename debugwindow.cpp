@@ -153,5 +153,5 @@ void debugwindow::DistanceSlot()
 
 void debugwindow::SendData()
 {
-    Port.PIDSlot(ui->PBox->value(),ui->IBox->value(),ui->DBox->value());
+    Port.PIDSlot(ui->P->value(),ui->I->value(),ui->D->value());
 }
