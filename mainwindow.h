@@ -30,7 +30,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;
-    void SendData();
     QTimer *Reflash=new QTimer;
 };
 

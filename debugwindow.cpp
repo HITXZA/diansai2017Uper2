@@ -79,6 +79,11 @@ void debugwindow::OpenPortSlot()
 {
     if(ui->PowerButton->text()=="打开串口")
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在打开串口");
+        a.show();
+
         bool ok=Port.OpenPort();
         if(ok)
         {
@@ -90,19 +95,28 @@ void debugwindow::OpenPortSlot()
             QMessageBox::information(this,"串口可能未打开","请检查设备是否未连接或被其他程序占用",QMessageBox::Yes);
             ui->PowerButton->setText("打开串口");
         }
+
+        a.close();
     }
     else
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在关闭串口");
+        a.show();
+
         Port.clear();
         Port.close();
         ui->PowerButton->setText("打开串口");
+
+        a.close();
     }
 }
 
 void debugwindow::PSlot()
 {
     ui->PBox->setValue(ui->P->value()/10.0);
-    this->SendData();
+    Port.PSlot(ui->P->value());
 }
 
 void debugwindow::PBoxSlot()
@@ -113,7 +127,7 @@ void debugwindow::PBoxSlot()
 void debugwindow::ISlot()
 {
     ui->IBox->setValue(ui->I->value()/10.0);
-    this->SendData();
+    Port.ISlot(ui->I->value());
 }
 
 void debugwindow::IBoxSlot()
@@ -124,7 +138,7 @@ void debugwindow::IBoxSlot()
 void debugwindow::DSlot()
 {
     ui->DBox->setValue(ui->D->value()/10.0);
-    this->SendData();
+    Port.DSlot(ui->D->value());
 }
 
 void debugwindow::DBoxSlot()
@@ -153,14 +167,8 @@ void debugwindow::DistanceSlot()
     Port.distanceMinusSlot();
 }
 
-void debugwindow::SendData()
-{
-    Port.PIDSlot(ui->P->value(),ui->I->value(),ui->D->value());
-}
-
 void debugwindow::StopSlot()
 {
-    ui->AngleSlider->setValue(0);
     if(!Port.isOpen())
     {
         QMessageBox a;
@@ -171,6 +179,7 @@ void debugwindow::StopSlot()
         a.exec();
         return;
     }
+    ui->AngleSlider->setValue(5);
     AngleSlot();//串口多发送几次数据
     AngleSlot();
     AngleSlot();

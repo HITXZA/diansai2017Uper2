@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
@@ -59,6 +60,11 @@ void MainWindow::OpenPortSlot()
 {
     if(ui->PowerButton->text()=="打开串口")
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在打开串口");
+        a.show();
+
         bool ok=Port.OpenPort();
         if(ok)
         {
@@ -70,12 +76,20 @@ void MainWindow::OpenPortSlot()
             QMessageBox::information(this,"串口可能未打开","请检查设备是否未连接或被其他程序占用",QMessageBox::Yes);
             ui->PowerButton->setText("打开串口");
         }
+        a.close();
     }
     else
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在关闭串口");
+        a.show();
+
         Port.clear();
         Port.close();
         ui->PowerButton->setText("打开串口");
+
+        a.close();
     }
 }
 
@@ -118,14 +132,8 @@ void MainWindow::distanceSlot()
     Port.distanceMinusSlot();
 }
 
-void MainWindow::SendData()
-{
-    //TODO发送到下位机，其实也可以在Port中实现
-}
-
 void MainWindow::StopSlot()
 {
-    ui->AngleSlider->setValue(5);
     if(!Port.isOpen())
     {
         QMessageBox a;
@@ -136,6 +144,7 @@ void MainWindow::StopSlot()
         a.exec();
         return;
     }
+    ui->AngleSlider->setValue(5);
     AngleSlot();//串口多发送几次数据
     AngleSlot();
     AngleSlot();

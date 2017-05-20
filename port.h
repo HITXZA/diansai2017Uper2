@@ -29,11 +29,14 @@ public:
 public slots:
     void DistanceAddSlot();
     void distanceMinusSlot();
-    void AngleSlot(int angle);
-    void PIDSlot(unsigned char P, unsigned char I, unsigned char D);
+    void AngleSlot(int angle);   
+    void PSlot(unsigned char P);
+    void ISlot(unsigned char I);
+    void DSlot(unsigned char D);
 private:
     void SaveWrite(QByteArray &data);
     void SaveWrite(char *data);
+
 
 };
 

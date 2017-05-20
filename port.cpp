@@ -151,50 +151,37 @@ void port::AngleSlot(int angle)
     Port.SaveWrite(a);
 }
 
-void port::PIDSlot(unsigned char P, unsigned char I, unsigned char D)
+void port::PSlot(unsigned char P)
 {
-    /*union
-    {
-        unsigned char a[2];
-        unsigned short int b;
-    }Send;
-
     QByteArray a;
-    a.resize(12);
-
-    a[0]=0x0c;
-    a[1]=0;
-    Send.b=P;
-    a[2]=Send.a[1];
-    a[3]=Send.a[0];
-
-    a[4]=0x0c;
-    a[5]=1;
-    Send.b=I;
-    a[6]=Send.a[1];
-    a[7]=Send.a[0];
-
-    a[8]=0x0c;
-    a[9]=2;
-    Send.b=D;
-    a[10]=Send.a[1];
-    a[11]=Send.a[0];*/
-
-
-    QByteArray a;
-    a.resize(9);
+    a.resize(3);
     a[0]=0x0c;
     a[1]=0;
     a[2]=P;
-    a[3]=0x0c;
-    a[4]=1;
-    a[5]=I;
-    a[6]=0x0c;
-    a[7]=2;
-    a[8]=D;
 
     Port.SaveWrite(a);
+}
 
+void port::ISlot(unsigned char I)
+{
+    QByteArray a;
+    a.resize(3);
+    a[0]=0x0c;
+    a[1]=1;
+    a[2]=I;
+
+    Port.SaveWrite(a);
+}
+
+void port::DSlot(unsigned char D)
+{
+    QByteArray a;
+    a.resize(3);
+    a[0]=0x0c;
+    a[1]=2;
+    a[2]=D;
+
+    Port.SaveWrite(a);
 }
 
 port Port;

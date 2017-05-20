@@ -34,7 +34,6 @@ public slots:
 private:
     Ui::debugwindow *ui;
     MyQwtPlot *Plot=new MyQwtPlot;
-     void SendData();
 };
 
 
