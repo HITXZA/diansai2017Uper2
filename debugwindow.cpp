@@ -23,15 +23,15 @@ debugwindow::debugwindow(QWidget *parent) :
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
-    ui->P->setMaximum(1000);
+    ui->P->setMaximum(100);
     ui->P->setMinimum(0);
-    ui->I->setMaximum(1000);
+    ui->I->setMaximum(100);
     ui->I->setMinimum(0);
-    ui->D->setMaximum(1000);
+    ui->D->setMaximum(100);
     ui->D->setMinimum(0);
-    ui->PBox->setSingleStep(0.01);
-    ui->IBox->setSingleStep(0.01);
-    ui->DBox->setSingleStep(0.01);
+    ui->PBox->setSingleStep(0.1);
+    ui->IBox->setSingleStep(0.1);
+    ui->DBox->setSingleStep(0.1);
 
 
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
@@ -48,10 +48,12 @@ debugwindow::debugwindow(QWidget *parent) :
     QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(DistanceSlot()));
     QObject::connect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     QObject::connect(ui->cleanButton,SIGNAL(clicked(bool)),this->Plot,SLOT(CleanSlot()));
+    QObject::connect(ui->StopButton,SIGNAL(clicked(bool)),this,SLOT(StopSlot()));
 }
 
 debugwindow::~debugwindow()
 {
+    QObject::disconnect(&Port,SIGNAL(readyRead()),this->Plot,SLOT(QwtReceiveSlot()));
     delete ui;
 }
 
@@ -99,35 +101,35 @@ void debugwindow::OpenPortSlot()
 
 void debugwindow::PSlot()
 {
-    ui->PBox->setValue(ui->P->value()/100.0);
+    ui->PBox->setValue(ui->P->value()/10.0);
     this->SendData();
 }
 
 void debugwindow::PBoxSlot()
 {
-    ui->P->setValue(ui->PBox->value()*100);
+    ui->P->setValue(ui->PBox->value()*10);
 }
 
 void debugwindow::ISlot()
 {
-    ui->IBox->setValue(ui->I->value()/100.0);
+    ui->IBox->setValue(ui->I->value()/10.0);
     this->SendData();
 }
 
 void debugwindow::IBoxSlot()
 {
-    ui->I->setValue(ui->IBox->value()*100);
+    ui->I->setValue(ui->IBox->value()*10);
 }
 
 void debugwindow::DSlot()
 {
-    ui->DBox->setValue(ui->D->value()/100.0);
+    ui->DBox->setValue(ui->D->value()/10.0);
     this->SendData();
 }
 
 void debugwindow::DBoxSlot()
 {
-    ui->D->setValue(ui->DBox->value()*100);
+    ui->D->setValue(ui->DBox->value()*10);
 }
 
 void debugwindow::AngleSlot()
@@ -154,4 +156,25 @@ void debugwindow::DistanceSlot()
 void debugwindow::SendData()
 {
     Port.PIDSlot(ui->P->value(),ui->I->value(),ui->D->value());
+}
+
+void debugwindow::StopSlot()
+{
+    ui->AngleSlider->setValue(0);
+    if(!Port.isOpen())
+    {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("请打开串口");
+        a.setText("串口可能未打开");
+        a.show();
+        a.exec();
+        return;
+    }
+    AngleSlot();//串口多发送几次数据
+    AngleSlot();
+    AngleSlot();
+    AngleSlot();
+    AngleSlot();
+
 }

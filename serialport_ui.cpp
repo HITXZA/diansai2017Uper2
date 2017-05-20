@@ -2,6 +2,7 @@
 #include "ui_serialport_ui.h"
 #include "port.h"
 #include <QMessageBox>
+#include <QDebug>
 
 serialport_ui::serialport_ui(QWidget *parent) :
     QDialog(parent),
@@ -77,12 +78,18 @@ void serialport_ui::PortOpenSlot()
 {
     if(ui->PowerButton->text()=="打开串口")
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在打开串口");
+        a.show();
+
         Port.settings.baud=ui->SpeedBox->currentIndex();
         Port.settings.Data=ui->DataBox->currentIndex();
         Port.settings.parity=ui->ChackBox->currentIndex();
         Port.settings.portname=ui->COMBox->currentText();
         Port.settings.stopbit=ui->StopBox->currentIndex();
         bool ok=Port.OpenPort();
+        a.close();
         if(ok)
         {
             ui->PowerButton->setText("关闭串口");
@@ -95,6 +102,11 @@ void serialport_ui::PortOpenSlot()
     }
     else if(ui->PowerButton->text()=="关闭串口")
     {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("正在关闭串口");
+        a.show();
+
         Port.clear();
         Port.close();
     }
@@ -117,6 +129,8 @@ void serialport_ui::ReceiveSlot()
         QByteArray buf;
         buf =Port.readAll();
         QString str="下位机:"+buf;
+        QString test=buf;
+        qDebug()<<test.toInt();
         ui->ReceiveAera->append(str);
         buf.clear();
     }

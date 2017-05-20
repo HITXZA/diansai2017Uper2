@@ -25,6 +25,7 @@ private slots:
     void AngleBoxSlot();
     void distanceAddSlot();
     void distanceSlot();
+    void StopSlot();
 
 private:
     Ui::MainWindow *ui;

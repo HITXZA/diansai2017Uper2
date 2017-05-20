@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->DistanceButton,SIGNAL(clicked(bool)),this,SLOT(distanceSlot()));
     QObject::connect(this->Reflash,SIGNAL(timeout()),ui->qwtPlot,SLOT(replot()));
     QObject::connect(ui->cleanButton,SIGNAL(clicked(bool)),this->Plot,SLOT(CleanSlot()));
+    QObject::connect(ui->stopbutton,SIGNAL(clicked(bool)),this,SLOT(StopSlot()));
 
 }
 
@@ -120,4 +121,25 @@ void MainWindow::distanceSlot()
 void MainWindow::SendData()
 {
     //TODO发送到下位机，其实也可以在Port中实现
+}
+
+void MainWindow::StopSlot()
+{
+    ui->AngleSlider->setValue(5);
+    if(!Port.isOpen())
+    {
+        QMessageBox a;
+        a.setIcon(QMessageBox::Information);
+        a.setWindowTitle("请打开串口");
+        a.setText("串口可能未打开");
+        a.show();
+        a.exec();
+        return;
+    }
+    AngleSlot();//串口多发送几次数据
+    AngleSlot();
+    AngleSlot();
+    AngleSlot();
+    AngleSlot();
+
 }

@@ -39,6 +39,9 @@ private:
     QTimer Reflash;
     QwtPlot *MyPlot;
 
+    int old_count;
+    int old_out;
+
 };
 
 #endif // QWTPLOT_H

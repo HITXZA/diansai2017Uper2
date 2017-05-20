@@ -28,6 +28,7 @@ public slots:
     void AngleBoxSlot();
     void DistanceaddSlot();
     void DistanceSlot();
+    void StopSlot();
 
 
 private:

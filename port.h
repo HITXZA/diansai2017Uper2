@@ -30,7 +30,7 @@ public slots:
     void DistanceAddSlot();
     void distanceMinusSlot();
     void AngleSlot(int angle);
-    void PIDSlot(unsigned short int P, unsigned short int I, unsigned short int D);
+    void PIDSlot(unsigned char P, unsigned char I, unsigned char D);
 private:
     void SaveWrite(QByteArray &data);
     void SaveWrite(char *data);
