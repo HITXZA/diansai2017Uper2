@@ -17,6 +17,9 @@ public:
     void PortScan();
     QList<QSerialPortInfo> PortInfo;
     bool OpenPort();
+
+    char position;
+
     struct
     {
         QString portname;

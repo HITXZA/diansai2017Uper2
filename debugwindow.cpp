@@ -23,15 +23,15 @@ debugwindow::debugwindow(QWidget *parent) :
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);
-    ui->P->setMaximum(100);
+    ui->P->setMaximum(250);
     ui->P->setMinimum(0);
-    ui->I->setMaximum(100);
+    ui->I->setMaximum(250);
     ui->I->setMinimum(0);
-    ui->D->setMaximum(100);
+    ui->D->setMaximum(250);
     ui->D->setMinimum(0);
-    ui->PBox->setSingleStep(0.1);
-    ui->IBox->setSingleStep(0.1);
-    ui->DBox->setSingleStep(0.1);
+    ui->PBox->setSingleStep(0.01);
+    ui->IBox->setSingleStep(0.01);
+    ui->DBox->setSingleStep(0.01);
 
 
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
@@ -115,35 +115,35 @@ void debugwindow::OpenPortSlot()
 
 void debugwindow::PSlot()
 {
-    ui->PBox->setValue(ui->P->value()/10.0);
+    ui->PBox->setValue(ui->P->value()/100.0);
     Port.PSlot(ui->P->value());
 }
 
 void debugwindow::PBoxSlot()
 {
-    ui->P->setValue(ui->PBox->value()*10);
+    ui->P->setValue(ui->PBox->value()*100);
 }
 
 void debugwindow::ISlot()
 {
-    ui->IBox->setValue(ui->I->value()/10.0);
+    ui->IBox->setValue(ui->I->value()/100.0);
     Port.ISlot(ui->I->value());
 }
 
 void debugwindow::IBoxSlot()
 {
-    ui->I->setValue(ui->IBox->value()*10);
+    ui->I->setValue(ui->IBox->value()*100);
 }
 
 void debugwindow::DSlot()
 {
-    ui->DBox->setValue(ui->D->value()/10.0);
+    ui->DBox->setValue(ui->D->value()/100.0);
     Port.DSlot(ui->D->value());
 }
 
 void debugwindow::DBoxSlot()
 {
-    ui->D->setValue(ui->DBox->value()*10);
+    ui->D->setValue(ui->DBox->value()*100);
 }
 
 void debugwindow::AngleSlot()
@@ -179,7 +179,7 @@ void debugwindow::StopSlot()
         a.exec();
         return;
     }
-    ui->AngleSlider->setValue(5);
+    ui->AngleSlider->setValue(0);
     AngleSlot();//串口多发送几次数据
     AngleSlot();
     AngleSlot();
