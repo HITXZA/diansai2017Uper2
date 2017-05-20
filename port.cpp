@@ -4,6 +4,7 @@
 
 port::port()
 {
+    this->position=5;
     this->PortInfo.clear();                                  //先清除列表
     this->PortInfo=QSerialPortInfo::availablePorts();        //读取串口信息
 }
@@ -122,23 +123,29 @@ void port::SaveWrite(char *data)
 
 void port::DistanceAddSlot()
 {
+    this->position++;
+    if(this->position>10)
+        this->position=10;
+
     QByteArray a;
-    a.resize(4);
-    a[0]=0x01;
-    a[1]=~0x01;
-    a[2]=~0x01;
-    a[3]=0x01;
+    a.resize(3);
+    a[0]=0x0c;
+    a[1]=0x04;
+    a[2]=this->position;
     Port.SaveWrite(a);
 }
 
 void port::distanceMinusSlot()
 {
+    this->position--;
+    if(this->position<=0)
+        this->position=0;
+
     QByteArray a;
-    a.resize(4);
-    a[0]=0x02;
-    a[1]=~0x02;
-    a[2]=~0x02;
-    a[3]=0x02;
+    a.resize(3);
+    a[0]=0x0c;
+    a[1]=0x04;
+    a[2]=this->position;
     Port.SaveWrite(a);
 }
 

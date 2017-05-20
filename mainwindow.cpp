@@ -144,7 +144,7 @@ void MainWindow::StopSlot()
         a.exec();
         return;
     }
-    ui->AngleSlider->setValue(5);
+    ui->AngleSlider->setValue(0);
     AngleSlot();//串口多发送几次数据
     AngleSlot();
     AngleSlot();
