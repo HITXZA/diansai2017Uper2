@@ -69,7 +69,71 @@
               </spacer>
              </item>
              <item>
+              <widget class="QPushButton" name="StepMinusButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑 Light</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: rgb(86,198,148);
+	color:white;
+    border-style: none;
+	min-width: 30ex;
+    min-height: 10ex;
+	padding: 3px;
+}
+QPushButton:hover {
+   background-color: rgb(154,220,192);
+}
+QPushButton:pressed {
+   background-color: rgb(101,148,128);
+}</string>
+               </property>
+               <property name="text">
+                <string>步进-5</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="StepAddButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑 Light</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: rgb(86,198,148);
+	color:white;
+    border-style: none;
+	min-width: 30ex;
+    min-height: 10ex;
+	padding: 3px;
+}
+QPushButton:hover {
+   background-color: rgb(154,220,192);
+}
+QPushButton:pressed {
+   background-color: rgb(101,148,128);
+}</string>
+               </property>
+               <property name="text">
+                <string>步进+5</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="stopbutton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑 Light</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
     background-color: rgb(86,198,148);
@@ -93,6 +157,12 @@ QPushButton:pressed {
              </item>
              <item>
               <widget class="QPushButton" name="cleanButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑 Light</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
     background-color: rgb(86,198,148);
@@ -215,6 +285,45 @@ width:30px;
              <item>
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
+                <widget class="QPushButton" name="DistanceButton">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>微软雅黑 Light</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-1</number>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {
+    background-color: rgb(86,198,148);
+	color:white;
+    border-style: none;
+	min-width: 30ex;
+    min-height: 3ex;
+	padding: 3px;
+}
+QPushButton:hover {
+   background-color: rgb(154,220,192);
+}
+QPushButton:pressed {
+   background-color: rgb(101,148,128);
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>距离增大</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="DistanceAddButton">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -239,45 +348,6 @@ width:30px;
                    <family>微软雅黑 Light</family>
                    <pointsize>10</pointsize>
                   </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QPushButton {
-    background-color: rgb(86,198,148);
-	color:white;
-    border-style: none;
-	min-width: 30ex;
-    min-height: 3ex;
-	padding: 3px;
-}
-QPushButton:hover {
-   background-color: rgb(154,220,192);
-}
-QPushButton:pressed {
-   background-color: rgb(101,148,128);
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>距离增加</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="DistanceButton">
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>微软雅黑 Light</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="toolTipDuration">
-                  <number>-1</number>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">QPushButton {

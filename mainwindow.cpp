@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(this->Reflash,SIGNAL(timeout()),ui->qwtPlot,SLOT(replot()));
     QObject::connect(ui->cleanButton,SIGNAL(clicked(bool)),this->Plot,SLOT(CleanSlot()));
     QObject::connect(ui->stopbutton,SIGNAL(clicked(bool)),this,SLOT(StopSlot()));
+    QObject::connect(ui->StepAddButton,SIGNAL(clicked(bool)),this,SLOT(StepAddSlot()));
+    QObject::connect(ui->StepMinusButton,SIGNAL(clicked(bool)),this,SLOT(StepMinusSlot()));
 
 }
 
@@ -151,4 +153,20 @@ void MainWindow::StopSlot()
     AngleSlot();
     AngleSlot();
 
+}
+
+void MainWindow::StepAddSlot()
+{
+    if(ui->AngleBox->value()>55)
+        return;
+
+    ui->AngleBox->setValue(ui->AngleBox->value()+5);
+}
+
+void MainWindow::StepMinusSlot()
+{
+    if(ui->AngleBox->value()<15)
+        return;
+
+    ui->AngleBox->setValue(ui->AngleBox->value()-5);
 }

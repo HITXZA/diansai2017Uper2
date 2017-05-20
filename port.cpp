@@ -124,13 +124,13 @@ void port::SaveWrite(char *data)
 void port::DistanceAddSlot()
 {
     this->position++;
-    if(this->position>10)
-        this->position=10;
+    if(this->position>15)
+        this->position=15;
 
     QByteArray a;
     a.resize(3);
     a[0]=0x0c;
-    a[1]=0x04;
+    a[1]=3;
     a[2]=this->position;
     Port.SaveWrite(a);
 }
@@ -144,7 +144,7 @@ void port::distanceMinusSlot()
     QByteArray a;
     a.resize(3);
     a[0]=0x0c;
-    a[1]=0x04;
+    a[1]=3;
     a[2]=this->position;
     Port.SaveWrite(a);
 }

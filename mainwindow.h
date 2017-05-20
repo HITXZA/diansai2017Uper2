@@ -26,6 +26,8 @@ private slots:
     void distanceAddSlot();
     void distanceSlot();
     void StopSlot();
+    void StepAddSlot();
+    void StepMinusSlot();
 
 private:
     Ui::MainWindow *ui;
