@@ -19,7 +19,7 @@ debugwindow::debugwindow(QWidget *parent) :
     {
         ui->PowerButton->setText("打开串口");
     }
-
+    this->setWindowTitle("718创新实验室");
     this->Plot->QwtInit(ui->qwtPlot);
     ui->AngleSlider->setMaximum(90);
     ui->AngleSlider->setMinimum(0);

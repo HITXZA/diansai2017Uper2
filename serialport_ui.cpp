@@ -20,7 +20,7 @@ serialport_ui::serialport_ui(QWidget *parent) :
     {
         ui->COMBox->addItem(info.portName());
     }
-
+    this->setWindowTitle("718创新实验室");
 
     this->PortToRight();
     this->PortChackSlot();

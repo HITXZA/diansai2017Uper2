@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->AngleSlider->setMinimum(0);
     ui->AngleSlider->setValue(0);
     this->Reflash->start(10);
-
+    this->setWindowTitle("718创新实验室");
     QObject::connect(ui->DeBugButton,SIGNAL(clicked(bool)),this,SLOT(DeBugInterfaceSlot()));
     QObject::connect(ui->PowerButton,SIGNAL(clicked(bool)),this,SLOT(OpenPortSlot()));
     QObject::connect(ui->PortConfigButton,SIGNAL(clicked(bool)),this,SLOT(PortConfigSlot()));
